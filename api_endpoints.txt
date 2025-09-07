@@ -1,0 +1,37 @@
+## Base URL
+Development: http://localhost:3000/api
+Production: [Your deployed backend URL]/api
+
+## Authentication Endpoints
+
+### POST /auth/google
+Description: Authenticate user with Google OAuth token
+Headers: Content-Type: application/json
+Body:
+{
+  "token": "google_id_token_here"
+}
+
+Response:
+{
+  "token": "jwt_token",
+  "user": {
+    "id": "user_id",
+    "name": "User Name",
+    "email": "user@example.com",
+    "picture": "profile_picture_url",
+    "role": "user|admin",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "lastLogin": "2024-01-01T00:00:00.000Z"
+  }
+}
+
+### GET /auth/me
+Description: Get current authenticated user
+Headers: Authorization: Bearer jwt_token
+Response: Same as login response user object
+
+### POST /auth/logout
+Description: Log out current user and record logout action
+Headers: Authorization: Bearer jwt_token
+Response: { "message": "Logged out successfully" }
